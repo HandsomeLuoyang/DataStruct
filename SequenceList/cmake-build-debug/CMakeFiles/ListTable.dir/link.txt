@@ -1,0 +1,3 @@
+"F:\CLion 2021.1.3\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\ListTable.dir/objects.a
+C:\PROGRA~2\mingw64\bin\ar.exe cr CMakeFiles\ListTable.dir/objects.a @CMakeFiles\ListTable.dir\objects1.rsp
+C:\PROGRA~2\mingw64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\ListTable.dir/objects.a -Wl,--no-whole-archive -o ListTable.exe -Wl,--out-implib,libListTable.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\ListTable.dir\linklibs.rsp

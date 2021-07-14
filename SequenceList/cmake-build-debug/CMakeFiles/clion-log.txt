@@ -1,0 +1,8 @@
+"F:\CLion 2021.1.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" F:\dataStruct\SequenceList
+    -- src/CMakeCXXCompilerId.cpp will be compiled to bin/CMakeCXXCompilerId
+    -- src/main.cpp will be compiled to bin/main
+    -- src/sequenceTable.cpp will be compiled to bin/sequenceTable
+    -- src/singleListTable.cpp will be compiled to bin/singleListTable
+-- Configuring done
+-- Generating done
+-- Build files have been written to: F:/dataStruct/SequenceList/cmake-build-debug

@@ -1,0 +1,3 @@
+"F:\CLion 2021.1.3\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\sequenceTable.dir/objects.a
+C:\PROGRA~2\mingw64\bin\ar.exe cr CMakeFiles\sequenceTable.dir/objects.a @CMakeFiles\sequenceTable.dir\objects1.rsp
+C:\PROGRA~2\mingw64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\sequenceTable.dir/objects.a -Wl,--no-whole-archive -o sequenceTable.exe -Wl,--out-implib,libsequenceTable.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\sequenceTable.dir\linklibs.rsp
