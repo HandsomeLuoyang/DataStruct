@@ -1,4 +1,5 @@
 "F:\CLion 2021.1.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" F:\dataStruct\Stack
+    -- src/StackForParenthesisMatching.cpp will be compiled to bin/StackForParenthesisMatching
     -- src/StackWithSequenceTable.cpp will be compiled to bin/StackWithSequenceTable
     -- src/CMakeCXXCompilerId.cpp will be compiled to bin/CMakeCXXCompilerId
     -- src/main.cpp will be compiled to bin/main

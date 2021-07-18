@@ -1,5 +1,6 @@
-F:/dataStruct/Stack/cmake-build-debug/CMakeFiles/StackWithSequenceTable.dir
 F:/dataStruct/Stack/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 F:/dataStruct/Stack/cmake-build-debug/CMakeFiles/CMakeCXXCompilerId.dir
+F:/dataStruct/Stack/cmake-build-debug/CMakeFiles/StackForParenthesisMatching.dir
+F:/dataStruct/Stack/cmake-build-debug/CMakeFiles/StackWithSequenceTable.dir
 F:/dataStruct/Stack/cmake-build-debug/CMakeFiles/edit_cache.dir
 F:/dataStruct/Stack/cmake-build-debug/CMakeFiles/main.dir

@@ -16,7 +16,7 @@ using namespace std;
  * attribute capacity: 栈容量
  */
 typedef struct Stack {
-    int *arr;
+    char *arr;
     int top;
     int capacity;
 } Stack;
@@ -32,7 +32,7 @@ Stack *initStack(int capacity) {
     //         并不需要去考虑指针分配的空间，因为指针是在系统栈里创建的，而当为指针分配空间的时候，是到堆里面去分配数组的
 
     Stack *stack = (Stack *) malloc(sizeof(Stack));
-    stack->arr = (int *) malloc(capacity * sizeof(int));
+    stack->arr = (char *) malloc(capacity * sizeof(char));
     stack->top = -1;
     stack->capacity = capacity;
     return stack;
@@ -49,7 +49,7 @@ bool isFull(Stack *stack) {
  * description: 栈的压入函数
  * parameter val: 要压入的值
  */
-bool push(Stack *stack, int val) {
+bool push(Stack *stack, char val) {
     if (isFull(stack)) return false;
     stack->arr[++stack->top] = val;
     return true;
@@ -100,18 +100,21 @@ void testTraver(Stack *stack) {
 }
 
 
-int main() {
-    Stack *stack = initStack(10);
-    pop(stack);
-    push(stack, 10);
-
-    for (int i = 0; i < 10; ++i) {
-        push(stack, i);
-    }
-    testTraver(stack);
-    for (int i = 0; i < 4; ++i) {
-        pop(stack);
-    }
-    testTraver(stack);
-    return 0;
-}
+/*
+ * 在运行栈的应用的代码的时候需要注释掉这里main函数，如要测试栈，就取消注释
+ */
+//int main() {
+//    Stack *stack = initStack(10);
+//    pop(stack);
+//    push(stack, 'a');
+//
+//    for (int i = 0; i < 10; ++i) {
+//        push(stack, (char) ('a' + i));
+//    }
+//    testTraver(stack);
+//    for (int i = 0; i < 4; ++i) {
+//        pop(stack);
+//    }
+//    testTraver(stack);
+//    return 0;
+//}

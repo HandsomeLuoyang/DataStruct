@@ -129,19 +129,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named StackWithSequenceTable
-
-# Build rule for target.
-StackWithSequenceTable: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 StackWithSequenceTable
-.PHONY : StackWithSequenceTable
-
-# fast build rule for target.
-StackWithSequenceTable/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\StackWithSequenceTable.dir\build.make CMakeFiles/StackWithSequenceTable.dir/build
-.PHONY : StackWithSequenceTable/fast
-
-#=============================================================================
 # Target rules for targets named CMakeCXXCompilerId
 
 # Build rule for target.
@@ -153,6 +140,32 @@ CMakeCXXCompilerId: cmake_check_build_system
 CMakeCXXCompilerId/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CMakeCXXCompilerId.dir\build.make CMakeFiles/CMakeCXXCompilerId.dir/build
 .PHONY : CMakeCXXCompilerId/fast
+
+#=============================================================================
+# Target rules for targets named StackForParenthesisMatching
+
+# Build rule for target.
+StackForParenthesisMatching: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 StackForParenthesisMatching
+.PHONY : StackForParenthesisMatching
+
+# fast build rule for target.
+StackForParenthesisMatching/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\StackForParenthesisMatching.dir\build.make CMakeFiles/StackForParenthesisMatching.dir/build
+.PHONY : StackForParenthesisMatching/fast
+
+#=============================================================================
+# Target rules for targets named StackWithSequenceTable
+
+# Build rule for target.
+StackWithSequenceTable: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 StackWithSequenceTable
+.PHONY : StackWithSequenceTable
+
+# fast build rule for target.
+StackWithSequenceTable/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\StackWithSequenceTable.dir\build.make CMakeFiles/StackWithSequenceTable.dir/build
+.PHONY : StackWithSequenceTable/fast
 
 #=============================================================================
 # Target rules for targets named main
@@ -193,6 +206,33 @@ CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.s: CMakeFiles/3.19.2/Compiler
 CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CMakeCXXCompilerId.dir\build.make CMakeFiles/CMakeCXXCompilerId.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s
 .PHONY : CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s
+
+StackForParenthesisMatching.obj: StackForParenthesisMatching.cpp.obj
+
+.PHONY : StackForParenthesisMatching.obj
+
+# target to build an object file
+StackForParenthesisMatching.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\StackForParenthesisMatching.dir\build.make CMakeFiles/StackForParenthesisMatching.dir/StackForParenthesisMatching.cpp.obj
+.PHONY : StackForParenthesisMatching.cpp.obj
+
+StackForParenthesisMatching.i: StackForParenthesisMatching.cpp.i
+
+.PHONY : StackForParenthesisMatching.i
+
+# target to preprocess a source file
+StackForParenthesisMatching.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\StackForParenthesisMatching.dir\build.make CMakeFiles/StackForParenthesisMatching.dir/StackForParenthesisMatching.cpp.i
+.PHONY : StackForParenthesisMatching.cpp.i
+
+StackForParenthesisMatching.s: StackForParenthesisMatching.cpp.s
+
+.PHONY : StackForParenthesisMatching.s
+
+# target to generate assembly for a file
+StackForParenthesisMatching.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\StackForParenthesisMatching.dir\build.make CMakeFiles/StackForParenthesisMatching.dir/StackForParenthesisMatching.cpp.s
+.PHONY : StackForParenthesisMatching.cpp.s
 
 StackWithSequenceTable.obj: StackWithSequenceTable.cpp.obj
 
@@ -257,11 +297,15 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... CMakeCXXCompilerId
+	@echo ... StackForParenthesisMatching
 	@echo ... StackWithSequenceTable
 	@echo ... main
 	@echo ... CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.obj
 	@echo ... CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.i
 	@echo ... CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.s
+	@echo ... StackForParenthesisMatching.obj
+	@echo ... StackForParenthesisMatching.i
+	@echo ... StackForParenthesisMatching.s
 	@echo ... StackWithSequenceTable.obj
 	@echo ... StackWithSequenceTable.i
 	@echo ... StackWithSequenceTable.s
