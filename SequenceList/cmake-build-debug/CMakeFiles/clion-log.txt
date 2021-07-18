@@ -1,5 +1,6 @@
 "F:\CLion 2021.1.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" F:\dataStruct\SequenceList
     -- src/CMakeCXXCompilerId.cpp will be compiled to bin/CMakeCXXCompilerId
+    -- src/doubleListTable.cpp will be compiled to bin/doubleListTable
     -- src/main.cpp will be compiled to bin/main
     -- src/sequenceTable.cpp will be compiled to bin/sequenceTable
     -- src/singleListTable.cpp will be compiled to bin/singleListTable

@@ -1,7 +1,7 @@
 /*
 -------------------------------------------------
    Author :       86178
-   date:          2021/7/14 14:24
+   date:          2021/7/18 13:48
    Description :
 -------------------------------------------------
 */
@@ -9,13 +9,14 @@
 
 using namespace std;
 
+
 /*
  * 链表节点结构体
  */
 typedef struct LinkNode {
     int val;
     struct LinkNode *next;
-    // 这里会浪费一些空间，但是方便记录长度，空间换时间
+    struct LinkNode *prev;
     int length;
 } Node, *LinkList;
 
@@ -26,7 +27,7 @@ typedef struct LinkNode {
  */
 LinkList initLinkList() {
     LinkList L = (Node *) malloc(sizeof(Node));
-    L->next = nullptr, L->val = 0, L->length = 0;
+    L->next = nullptr, L->prev = nullptr, L->val = 0, L->length = 0;
     return L;
 }
 
@@ -64,7 +65,11 @@ bool insert(LinkList L, int index, int val) {
 
     // 双链表的插入
     new_node->next = node->next;
+    if (node->next != nullptr)
+        node->next->prev = new_node;
     node->next = new_node;
+    new_node->prev = node;
+
     L->length++;
     return true;
 }
@@ -97,9 +102,13 @@ LinkList initLinkListTail(int arr[], int length) {
     for (int i = 0; i < length; i++) {
         Node *new_node = (Node *) malloc(sizeof(Node));
         new_node->val = arr[i];
+
         new_node->next = node->next;
         node->next = new_node;
+        new_node->prev = node;
+
         node = node->next;
+
         L->length++;
     }
     return L;
@@ -110,11 +119,13 @@ LinkList initLinkListTail(int arr[], int length) {
  * parameter index：要删除的元素的索引（从0开始）
  */
 bool l_delete(LinkList L, int index) {
-    // 删除需要找到它前一个的节点指针
-    Node *pre = search(L, index);
-    if (pre == nullptr) return false;
-    Node *del = pre->next;
-    pre->next = del->next;
+    // 双链表删除一个节点可以直接找到它
+    Node *del = search(L, index + 1);
+    if (del == nullptr) return false;
+
+    del->prev->next = del->next;
+    del->next->prev = del->prev;
+
     free(del);
     L->length--;
     return true;
@@ -127,7 +138,7 @@ bool l_delete(LinkList L, int index) {
  * return 索引值
  */
 int getVal(LinkList L, int index) {
-    Node *node = search(L, index+1);
+    Node *node = search(L, index + 1);
     if (node == nullptr) {
         printf("越界错误！");
         return -1;
@@ -192,5 +203,6 @@ int main() {
 
     printf("索引3处的节点值为%d\n", getVal(L, 3));
 
+    return 0;
     return 0;
 }
