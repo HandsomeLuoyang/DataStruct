@@ -1,0 +1,3 @@
+"F:\CLion 2021.1.3\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\Tree.dir/objects.a
+C:\PROGRA~2\mingw64\bin\ar.exe cr CMakeFiles\Tree.dir/objects.a @CMakeFiles\Tree.dir\objects1.rsp
+C:\PROGRA~2\mingw64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\Tree.dir/objects.a -Wl,--no-whole-archive -o Tree.exe -Wl,--out-implib,libTree.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Tree.dir\linklibs.rsp

@@ -13,8 +13,6 @@ using namespace std;
  * 括号匹配在最下面
  */
 
-
-
 /*
  * description: 栈结构体
  * attribute a: 存数据的数组指针
