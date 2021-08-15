@@ -55,12 +55,80 @@ private:
 
 
     /*
-     * 中序遍历的私有函数
+     * 中序递归遍历的私有函数
      */
     void __midTraverse(TreeNode *node) {
-        if (node->left) __midTraverse(node->left);
+        if (!node) return;
+        __midTraverse(node->left);
         cout << node->val << " ";
-        if (node->right) __midTraverse(node->right);
+        __midTraverse(node->right);
+    }
+
+    void __midStackTraverse() {
+        TreeNode *p = root;
+        stack<TreeNode *> stk;
+        // 从头结点开始找
+        while (p || !stk.empty()) {
+            // 一直向左走，碰到一个节点的时候先不打印它的值（即不访问），对应__midTraverse(node->left);
+            if (p) {
+                stk.push(p);
+                p = p->left;
+            }
+                // 左边没有孩子了
+            else {
+                // 这个时候弹出栈顶的指针，对应if (!node) return;
+                p = stk.top();
+                stk.pop();
+                // 这个时候把栈顶的值打印（即访问）,对应cout << node->val << " ";
+                cout << p->val << " ";
+                // 访问完之后直接往右走，对应的是__midTraverse(node->right);
+                p = p->right;
+            }
+        }
+    }
+
+    /*
+     * 前序递归遍历的私有函数
+     */
+    void __preTraverse(TreeNode *node) {
+        if (!node) return;
+        cout << node->val << " ";
+        __preTraverse(node->left);
+        __preTraverse(node->right);
+    }
+
+
+    /*
+     * 后序递归便利的私有函数
+     */
+    void __afterTraverse(TreeNode *node) {
+        if (node->left) __afterTraverse(node->left);
+        if (node->right) __afterTraverse(node->right);
+        cout << node->val << " ";
+    }
+
+    /*
+     * 利用栈前序遍历的函数
+     */
+    void __preStackTraverse() {
+        stack<TreeNode *> stk;
+        // 从根节点开始
+        TreeNode *p = root;
+        while (p || !stk.empty()) {
+            // 一直往左孩子走，实际上就是__preTraverse(node->left); 这句话，并且打印了值(即访问)
+            if (p != nullptr) {
+                cout << p->val << " ";
+                stk.push(p);
+                p = p->left;
+            }
+                // 左孩子不存在了，这个时候把栈中最上层的元素取出，对应的是if(!node) return;这行代码
+                // 拿着最上层元素对其右孩子进行探测，对应的是__preTraverse(node->right);这行代码
+            else {
+                p = stk.top();
+                stk.pop();
+                p = p->right;
+            }
+        }
     }
 
 public:
@@ -119,60 +187,7 @@ public:
      * 这里采用的是让被删节点的左子树的最大节点来顶替位置
      */
     bool deleteNode(int val) {
-        TreeNode *node = find(val);
-        if (node == nullptr) {
-            cout << "要删除的节点不存在..." << endl;
-            return false;
-        } else {
 
-            int flag = -1;
-            // 找到要删除的节点是他爸的左孩子还是右孩子，还是root节点
-            if (node->parent == nullptr) {
-                flag = 0; // 根节点
-            } else if (node->parent->left == node) {
-                flag = 1; // 左孩子
-            } else {
-                flag = 2; // 右孩子
-            }
-
-
-            // 1.没有孩子
-            if (node->left == nullptr && node->right == nullptr) {
-                if (flag == 1) {
-                    node->parent->left = nullptr;
-                    delete node;
-                    return true;
-                } else if (flag == 2) {
-                    node->parent->right = nullptr;
-                    delete node;
-                    return true;
-                } else {
-                    // 如果仅有的根节点被删除了，树就没了，不允许删除
-                    cout << "仅剩根节点，不允许删除..." << endl;
-                    return false;
-                }
-            }
-
-            // 2.只有左子树或者右子树
-            if (node->left != nullptr && node->right == nullptr) {
-                // 选择左子树最大的那个顶替
-                TreeNode *temp = node->left;
-                while (temp->right) temp = temp->right;
-
-                // 如果这个节点没有右孩子了
-                if (temp == node->left) {
-                    if (flag == 0) {
-                        temp->parent = nullptr;
-                        temp->right =
-                    }
-                }
-
-                // 如果这个节点还有左孩子，就把孩子给他爸，而他只可能是他爸的右孩子
-                if (temp->left != nullptr) {
-                    if (temp->parent->left != temp)
-                }
-            }
-        }
     }
 
     /*
@@ -190,8 +205,38 @@ public:
         return nullptr;
     }
 
-    void midTraverse() {
-        this->__midTraverse(this->root);
+    /*
+     * Description：二叉树的中序遍历
+     * parameter flag：1代表递归遍历，2代表手动用栈迭代遍历
+     */
+    void midTraverse(int flag) {
+        if (flag == 1)
+            this->__midTraverse(this->root);
+        else {
+            __midStackTraverse();
+        }
+    }
+
+    /*
+     * Description：二叉树的前序遍历
+     * parameter flag：1代表递归遍历，2代表手动用栈迭代遍历
+     */
+    void preTraverse(int flag) {
+        if (flag == 1)
+            this->__preTraverse(this->root);
+        else {
+            this->__preStackTraverse();
+        }
+    }
+
+    /*
+     * Description：二叉树的后续遍历
+     * parameter flag：1代表递归遍历，2代表手动用栈迭代遍历
+     */
+    void afterTraverse(int flag) {
+        if (flag == 1)
+            this->__afterTraverse(this->root);
+        else {}
     }
 
     int getCount() { return this->count; };
@@ -201,7 +246,6 @@ public:
 int main() {
     int arr[] = {2, 4, 5, 6, 8, 9, 21, 4567, 6, 87,};
     BinarySearchTree t(arr, sizeof(arr) / sizeof(arr[0]));
-    cout << t.getCount() << endl;
-    t.midTraverse();
+    t.midTraverse(2);
     return 0;
 }

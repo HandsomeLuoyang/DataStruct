@@ -142,6 +142,19 @@ Binary-Search-Tree/fast:
 .PHONY : Binary-Search-Tree/fast
 
 #=============================================================================
+# Target rules for targets named Binary_tree
+
+# Build rule for target.
+Binary_tree: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Binary_tree
+.PHONY : Binary_tree
+
+# fast build rule for target.
+Binary_tree/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Binary_tree.dir\build.make CMakeFiles/Binary_tree.dir/build
+.PHONY : Binary_tree/fast
+
+#=============================================================================
 # Target rules for targets named CMakeCXXCompilerId
 
 # Build rule for target.
@@ -193,6 +206,33 @@ Binary-Search-Tree.s: Binary-Search-Tree.cpp.s
 Binary-Search-Tree.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Binary-Search-Tree.dir\build.make CMakeFiles/Binary-Search-Tree.dir/Binary-Search-Tree.cpp.s
 .PHONY : Binary-Search-Tree.cpp.s
+
+Binary_tree.obj: Binary_tree.cpp.obj
+
+.PHONY : Binary_tree.obj
+
+# target to build an object file
+Binary_tree.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Binary_tree.dir\build.make CMakeFiles/Binary_tree.dir/Binary_tree.cpp.obj
+.PHONY : Binary_tree.cpp.obj
+
+Binary_tree.i: Binary_tree.cpp.i
+
+.PHONY : Binary_tree.i
+
+# target to preprocess a source file
+Binary_tree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Binary_tree.dir\build.make CMakeFiles/Binary_tree.dir/Binary_tree.cpp.i
+.PHONY : Binary_tree.cpp.i
+
+Binary_tree.s: Binary_tree.cpp.s
+
+.PHONY : Binary_tree.s
+
+# target to generate assembly for a file
+Binary_tree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Binary_tree.dir\build.make CMakeFiles/Binary_tree.dir/Binary_tree.cpp.s
+.PHONY : Binary_tree.cpp.s
 
 CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.obj: CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.obj
 
@@ -257,11 +297,15 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Binary-Search-Tree
+	@echo ... Binary_tree
 	@echo ... CMakeCXXCompilerId
 	@echo ... main
 	@echo ... Binary-Search-Tree.obj
 	@echo ... Binary-Search-Tree.i
 	@echo ... Binary-Search-Tree.s
+	@echo ... Binary_tree.obj
+	@echo ... Binary_tree.i
+	@echo ... Binary_tree.s
 	@echo ... CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.obj
 	@echo ... CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.i
 	@echo ... CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.s
