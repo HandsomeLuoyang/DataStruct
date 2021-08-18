@@ -28,6 +28,7 @@ public:
     bool operator>(const Edge &other) const {
         return this->weight > other.weight;
     }
+
     bool operator<(const Edge &other) const {
         return this->weight <= other.weight;
     }
@@ -170,20 +171,47 @@ public:
     /*
      * Prim算法求最小生成树
      */
-    void prim() {}
+    void prim(int nIndex) {
+        if (nIndex < 0 || nIndex >= curSize) return;
+        int visited[curSize];
+        memset(visited, 0, curSize * sizeof(int));
+        visited[nIndex] = 1;
+        set<Edge> edgeSet;
+
+        priority_queue<Edge, vector<Edge>, greater<Edge> > pq;
+        while (edgeSet.size() < curSize - 1) {
+            // 每次对当前节点拿到它的所有连接的边,并且这条边另外一边所连接的节点需要是未访问过的
+            for (int i = 0; i < curSize; i++) {
+                if (Matrix[nIndex * capacity + i] && !visited[i]) {
+                    // 将边加入最小堆
+                    Edge curEdge(nIndex, i, Matrix[nIndex * capacity + i]);
+                    pq.push(curEdge);
+                }
+            }
+            // 从边集中拿出权值最小的那条边，把右边的节点拿出来贯通
+            Edge curEdge = pq.top();
+            pq.pop();
+            nIndex = curEdge.rIndex;
+            visited[nIndex] = 1;
+            edgeSet.insert(curEdge);
+            cout << nodes[curEdge.lIndex].val << "----" << nodes[curEdge.rIndex].val << endl;
+        }
+    }
 
     /*
      * Kruskal算法求最小生成树
      */
     void kruskal() {
-        priority_queue<Edge, vector<Edge>, greater<Edge> > small_heap;
+        priority_queue<Edge, vector<Edge>, greater<> > small_heap;
         for (int i = 0; i < edges.size(); i++) {
             small_heap.push(*edges[i]);
         }
 
         vector<vector<int> > bigSet;
         set<Edge> edgeSet;
+//        cout << "总大小：" << curSize << endl;
         while (edgeSet.size() < curSize - 1) {
+//            cout << "大小：" << edgeSet.size() << endl;
             Edge curEdge = small_heap.top(); // 选出当前权最小的边
             small_heap.pop(); // 弹出边
             // 判断边两头节点的情况
@@ -221,9 +249,9 @@ public:
                 for (int i = 0; i < bigSet[rSet].size(); i++) {
                     // 右节点所在集合元素全部加入左节点所在集合
                     bigSet[lSet].push_back(bigSet[rSet][i]);
-                    // 从大集合中删除右节点所在集合
-                    bigSet.erase(bigSet.begin() + rSet);
                 }
+                // 从大集合中删除右节点所在集合
+                bigSet.erase(bigSet.begin() + rSet);
             }
 
             // 处理完节点的集合问题之后，如果之前没有continue，那么这条边就被选中加入了最小生成树了
@@ -263,5 +291,8 @@ int main() {
     cout << endl;
     cout << "kruskal最小生成树: " << endl;
     g.kruskal();
+    cout << endl;
+    cout << "prim最小生成树: " << endl;
+    g.prim(0);
     return 0;
 }
