@@ -9,6 +9,7 @@
 
 using namespace std;
 
+const int INTMAX = 10000000;
 const int NUMS = 1000; // 图中节点最大数量
 typedef char data; // 通过这种方式设置节点中存储的数据类型
 
@@ -260,6 +261,58 @@ public:
         }
     }
 
+    /*
+     * Dijkstra 算法
+     */
+    void dijkstra(int nIndex) {
+        int flag[curSize];
+        int dist[curSize];
+        int prev[curSize];
+        memset(flag, 0, curSize * sizeof(int));
+        memset(prev, 0, curSize * sizeof(int));
+
+        // 初始化dist数组
+        for (int i = 0; i < curSize; i++) {
+            if (Matrix[nIndex * capacity + i]) {
+                dist[i] = Matrix[nIndex * capacity + i];
+            } else {
+                dist[i] = INTMAX;
+            }
+        }
+
+        flag[nIndex] = 1;
+        dist[nIndex] = 0;
+
+        int k = -1;// 用来记录每一次从dist中找出的最短路径的编号
+        for (int _ = 0; _ < curSize; _++) {
+            int min = INTMAX;
+            for (int i = 0; i < curSize; i++) {
+                if (!flag[i] && dist[i] < min) {
+                    min = dist[i];
+                    k = i;
+                }
+            }
+            // 找完之后，k就是短的那条路径的下标，这个节点已经确定！
+            flag[k] = 1;
+
+            // 开始利用这各节点更新距离列表
+            for (int i = 0; i < curSize; i++) {
+                if (!flag[i]) {
+                    int distance = Matrix[k * capacity + i] == 0 ? INTMAX : Matrix[k * capacity + i];
+                    if (dist[i] > dist[k] + distance) {
+                        dist[i] = dist[k] + distance;
+                        prev[i] = k;
+                    }
+                }
+            }
+
+        }
+        for (int i = 0; i < curSize; i++) {
+            cout << dist[i] << " ";
+        }
+
+    }
+
 };
 
 
@@ -278,7 +331,7 @@ int main() {
     g.setMatrixForUndirectedMap(1, 2, 10);
     g.setMatrixForUndirectedMap(2, 3, 5);
     g.setMatrixForUndirectedMap(0, 5, 3);
-    g.setMatrixForUndirectedMap(1, 4, 12);
+    g.setMatrixForUndirectedMap(1, 4, 2);
     g.setMatrixForUndirectedMap(4, 2, 5);
 
 
@@ -294,5 +347,9 @@ int main() {
     cout << endl;
     cout << "prim最小生成树: " << endl;
     g.prim(0);
+    cout << endl;
+    cout << "dijkstra最短路径: " << endl;
+    g.dijkstra(1);
+
     return 0;
 }
