@@ -80,6 +80,17 @@ public:
     }
 
     /*
+     * 打印邻接矩阵
+     */
+    void print_Matrix() {
+        for (int i = 0; i < curSize; i++)
+            for (int j = 0; j < curSize; j++) {
+                cout << Matrix[i * capacity + j] << " ";
+            }
+        cout << endl;
+    }
+
+    /*
      * 添加节点
      */
     bool addNode(data val) {
@@ -313,6 +324,60 @@ public:
 
     }
 
+    /*
+     * Floyd 最短路径算法
+     */
+    void floyd() {
+        int A[curSize * curSize];
+        int Path[curSize * curSize];
+
+        // 初始化A矩阵，不相连的距离设置成为无穷大
+        // Path矩阵初始化为自己
+        for (int i = 0; i < curSize; i++) {
+            for (int j = 0; j < curSize; j++) {
+                Path[i * curSize + j] = j;
+                if (i == j) {
+                    A[i * curSize + j] = 0;
+                    continue;
+                }
+                int val = Matrix[i * capacity + j];
+                A[i * curSize + j] = val == 0 ? INTMAX : val;
+            }
+        }
+
+        for (int i = 0; i < curSize; i++) {
+            for (int j = 0; j < curSize; ++j) {
+                cout << A[i * curSize + j] << " ";
+            }
+            cout << endl;
+        }
+
+
+        // 开始迭代更新
+        for (int k = 0; k < curSize; k++) {
+            // k代表选择的中间点
+            for (int i = 0; i < curSize; i++) {
+                for (int j = 0; j < curSize; j++) {
+                    if (i == j || i == k || j == k) continue;
+                    int distance = A[i * curSize + k] + A[k * curSize + j];
+                    distance = distance == 0 ? INTMAX : distance;
+                    if (distance < A[i * curSize + j]) {
+                        cout << "i:" << i << "  j:" << j << " k:" << k << " distance:" << distance << endl;
+                        A[i * curSize + j] = distance;
+                        Path[i * curSize + j] = k;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < curSize; i++) {
+            for (int j = 0; j < curSize; ++j) {
+                cout << A[i * curSize + j] << " ";
+            }
+            cout << endl;
+        }
+
+    }
 };
 
 
@@ -350,6 +415,9 @@ int main() {
     cout << endl;
     cout << "dijkstra最短路径: " << endl;
     g.dijkstra(1);
+    cout << endl;
+    cout << "floyd最短路径: " << endl;
+    g.floyd();
 
     return 0;
 }
