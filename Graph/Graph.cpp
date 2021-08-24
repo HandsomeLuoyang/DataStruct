@@ -345,13 +345,6 @@ public:
             }
         }
 
-        for (int i = 0; i < curSize; i++) {
-            for (int j = 0; j < curSize; ++j) {
-                cout << A[i * curSize + j] << " ";
-            }
-            cout << endl;
-        }
-
 
         // 开始迭代更新
         for (int k = 0; k < curSize; k++) {
@@ -362,7 +355,6 @@ public:
                     int distance = A[i * curSize + k] + A[k * curSize + j];
                     distance = distance == 0 ? INTMAX : distance;
                     if (distance < A[i * curSize + j]) {
-                        cout << "i:" << i << "  j:" << j << " k:" << k << " distance:" << distance << endl;
                         A[i * curSize + j] = distance;
                         Path[i * curSize + j] = k;
                     }
@@ -415,6 +407,7 @@ int main() {
     cout << endl;
     cout << "dijkstra最短路径: " << endl;
     g.dijkstra(1);
+    cout << endl;
     cout << endl;
     cout << "floyd最短路径: " << endl;
     g.floyd();
